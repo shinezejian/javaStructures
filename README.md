@@ -5,3 +5,5 @@
 [java数据结构与算法之双链表设计与实现](http://blog.csdn.net/javazejian/article/details/53047590)
 
 [java数据结构与算法之改良顺序表与双链表类似ArrayList和LinkedList（带Iterator迭代器与fast-fail机制）](http://blog.csdn.net/javazejian/article/details/53073995)
+
+[java数据结构与算法之栈（Stack）设计与实现](http://blog.csdn.net/javazejian/article/details/53362993)
