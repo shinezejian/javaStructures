@@ -14,6 +14,11 @@ public class SingleILinkedList<T> implements ILinkedList<T> {
         this.head = head;
     }
 
+
+    public SingleILinkedList() {
+
+    }
+
     /**
      * 传入一个数组,转换成链表
      * @param array
