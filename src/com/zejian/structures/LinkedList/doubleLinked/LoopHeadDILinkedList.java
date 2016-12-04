@@ -8,7 +8,7 @@ import com.zejian.structures.LinkedList.ILinkedList;
  */
 public class LoopHeadDILinkedList<T> implements ILinkedList<T> {
 
-    protected DNode<T> head; //不带数据的头结点
+    public DNode<T> head; //不带数据的头结点
  //   protected DNode<T> tail; //指向尾部的指针
 
     public LoopHeadDILinkedList(){

@@ -15,22 +15,22 @@ public class MylinkeList<T> implements Serializable,IList<T>, Iterable<T>{
     /**
      * 链表size,优化计算过程,无需遍历链表
      */
-    private int size = 0;
+    protected int size = 0;
 
     /**
      * 修改的记录符
      */
-    private int modCount=0;
+    protected int modCount=0;
 
     /**
      * 头部指向结点,不带数据,排除特殊情况,优化代码量
      */
-    private Node<T> first;
+    protected Node<T> first;
 
     /**
      * 尾部指向结点,不带数据,排除特殊情况,优化代码量
      */
-    private Node<T> last;
+    protected Node<T> last;
 
     /**
      * 初始化链表
@@ -501,7 +501,7 @@ public class MylinkeList<T> implements Serializable,IList<T>, Iterable<T>{
      * Blog : http://blog.csdn.net/javazejian
      * @param <T>
      */
-    private static class Node<T> {
+    protected static class Node<T> {
         T data;
         Node<T> next;
         Node<T> prev;

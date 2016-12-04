@@ -36,6 +36,7 @@ public class SortLoopHeadDIlinkedList<T extends Comparable<? extends T>> extends
         return true;
     }
 
+
     public static void main(String[] args){
         SortLoopHeadDIlinkedList<Integer> list=new SortLoopHeadDIlinkedList<>();
         list.add(50);
