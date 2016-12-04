@@ -31,6 +31,11 @@ public class PriorityQueue<T extends Comparable<? extends T>> implements Queue<T
         this.asc=asc;//默认升序
     }
 
+
+    public void setMaxSize(int maxSize) {
+        this.maxSize = maxSize;
+    }
+
     @Override
     public int size() {
         return list.size();
@@ -65,7 +70,7 @@ public class PriorityQueue<T extends Comparable<? extends T>> implements Queue<T
         if (data==null)
             throw new NullPointerException("The data can\'t be null");
         if (list.size()>=maxSize)
-            throw new IllegalArgumentException("The capacity of LinkedQueue has reached its maxSize:128");
+            throw new IllegalArgumentException("The capacity of PriorityQueue has reached its maxSize:128");
 
         return add(data);
     }
@@ -89,7 +94,7 @@ public class PriorityQueue<T extends Comparable<? extends T>> implements Queue<T
     @Override
     public T element() {
         if(isEmpty()){
-            throw new NoSuchElementException("The LinkedQueue is empty");
+            throw new NoSuchElementException("The PriorityQueue is empty");
         }
         return peek();
     }
