@@ -9,3 +9,6 @@
 [java数据结构与算法之栈（Stack）设计与实现](http://blog.csdn.net/javazejian/article/details/53362993)
 
 [java数据结构与算法之队列(Queue)设计与实现](http://blog.csdn.net/javazejian/article/details/53375004)
+
+[java数据结构与算法之递归思维(让我们更通俗地理解递归)](http://blog.csdn.net/javazejian/article/details/53452971)
+
