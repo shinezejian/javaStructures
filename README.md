@@ -12,3 +12,4 @@
 
 [java数据结构与算法之递归思维(让我们更通俗地理解递归)](http://blog.csdn.net/javazejian/article/details/53452971)
 
+[java数据结构与算法之树基本概念及二叉树（BinaryTree）的设计与实现](http://blog.csdn.net/javazejian/article/details/53727333)
