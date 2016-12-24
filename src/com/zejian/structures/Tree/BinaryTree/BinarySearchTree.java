@@ -566,6 +566,7 @@ public class BinarySearchTree<T extends Comparable>  implements Tree<T> {
                 current=current.left;
             }else if(result>0){//从右子树查找
                 isLeft=false;
+                current=current.right;
             }
             //如果没有找到,返回null
             if (current==null){
