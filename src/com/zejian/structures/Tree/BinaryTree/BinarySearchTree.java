@@ -3,6 +3,10 @@ package com.zejian.structures.Tree.BinaryTree;
 import com.zejian.structures.Queue.LinkedQueue;
 import com.zejian.structures.Stack.LinkedStack;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
+
 
 /**
  * Created by zejian on 2016/12/14.
@@ -197,7 +201,6 @@ public class BinarySearchTree<T extends Comparable>  implements Tree<T> {
             //去掉尾部","号
             sb=sb.substring(0,sb.length()-1);
         }
-
         return sb;
     }
 
@@ -208,9 +211,9 @@ public class BinarySearchTree<T extends Comparable>  implements Tree<T> {
      * @return
      */
     private String preOrder(BinaryNode<T> subtree){
-        StringBuffer sb=new StringBuffer();
+        StringBuilder sb=new StringBuilder();
         if (subtree!=null) {//递归结束条件
-            sb.append(subtree.data+",");
+            sb.append(subtree.data).append(",");
             //遍历左子树
             sb.append(preOrder(subtree.left));
             //遍历右子树
@@ -236,12 +239,12 @@ public class BinarySearchTree<T extends Comparable>  implements Tree<T> {
      * @return
      */
     public String inOrder(BinaryNode<T> subtree) {
-        StringBuffer sb=new StringBuffer();
+        StringBuilder sb=new StringBuilder();
         if (subtree!=null) {//递归结束条件
             //先遍历左子树
             sb.append(inOrder(subtree.left));
             //再遍历根结点
-            sb.append(subtree.data+",");
+            sb.append(subtree.data).append(",");
             //最后遍历右子树
             sb.append(inOrder(subtree.right));
         }
@@ -266,7 +269,7 @@ public class BinarySearchTree<T extends Comparable>  implements Tree<T> {
      * @return
      */
     public String postOrder(BinaryNode<T> subtree) {
-        StringBuffer sb=new StringBuffer();
+        StringBuilder sb=new StringBuilder();
         if (subtree!=null) {//递归结束条件
             //先遍历左子树
             sb.append(postOrder(subtree.left));
@@ -275,7 +278,7 @@ public class BinarySearchTree<T extends Comparable>  implements Tree<T> {
             sb.append(postOrder(subtree.right));
 
             //最后遍历根结点
-            sb.append(subtree.data+",");
+            sb.append(subtree.data).append(",");
         }
         return sb.toString();
     }
@@ -468,7 +471,7 @@ public class BinarySearchTree<T extends Comparable>  implements Tree<T> {
 
     @Override
     public BinaryNode<T> findNode(T data) {
-        return findNode(data);
+        return findNode(data,root);
     }
 
     /**
@@ -543,7 +546,7 @@ public class BinarySearchTree<T extends Comparable>  implements Tree<T> {
      * 非递归删除
      * @param data
      */
-    public T removeUnrecure(T data){
+    public boolean removeUnrecure(T data){
         if (data==null){
             throw new RuntimeException("data can\'Comparable be null !");
         }
@@ -570,7 +573,7 @@ public class BinarySearchTree<T extends Comparable>  implements Tree<T> {
             }
             //如果没有找到,返回null
             if (current==null){
-                return null;
+                return false;
             }
         }
 
@@ -621,7 +624,7 @@ public class BinarySearchTree<T extends Comparable>  implements Tree<T> {
             //把当前要删除的结点的左孩子赋值给successor
             successor.left = current.left;
         }
-        return current.data;
+        return true;
     }
 
     /**
@@ -710,7 +713,6 @@ public class BinarySearchTree<T extends Comparable>  implements Tree<T> {
 
         //计算比较结果
         int compareResult=data.compareTo(p.data);
-        System.out.println("compareResult:"+compareResult);
         //如果小于0,从左子树遍历
         if(compareResult<0){
             return contains(data,p.left);
@@ -736,6 +738,94 @@ public class BinarySearchTree<T extends Comparable>  implements Tree<T> {
             printTree( t.right );
         }
     }
+
+
+    /**
+     *
+     * 将树转换成字符串并打印在控制台上，用L表示左孩子，R表示右孩子
+     */
+    public void print() {
+        LinkedList<BinaryNode<T>> tree = getCompleteBinaryTree();
+        //获取树的深度
+        int depth = height();
+        Iterator<BinaryNode<T>> iterator = tree.iterator();
+
+        int maxPosition = 1;
+
+        for (int floor = 1; floor <= depth; floor++) { // 层数，从1开始
+            maxPosition = 1 << (floor - 1);//左移相当于1*2^(floor-1)
+
+            //输出元素前需要打印的空白符
+            //左移相当于1*2^( depth - floor ) - 1
+            printBlank((1 << (depth - floor)) - 1);
+
+            //开始打印元素
+            for (int position = 0; position < maxPosition; position++) {
+                if (iterator.hasNext()) {
+                    BinaryNode<T> node = iterator.next();
+                    if (node != null) {
+                        System.out.print(node.data);
+                    } else {
+                        System.out.print(" ");
+                    }
+                    //再次打印间隔空白符
+                    printBlank((1 << (depth - floor + 1)) - 1);
+                }
+            }
+            //换行
+            System.out.println();
+
+        }
+    }
+
+    /**
+     * 打印空白
+     * @param length
+     */
+    private void printBlank(int length) {
+        while (length-- > 0) {
+            System.out.print(" ");
+        }
+    }
+
+    /*
+     * 将二叉树用空节点补充成完全二叉树，并以水平遍历形式返回
+     */
+    private LinkedList<BinaryNode<T>> getCompleteBinaryTree() {
+        Queue<BinaryNode<T>> queue = new LinkedList<>();
+        LinkedList<BinaryNode<T>> tree = new LinkedList<>(); // 把树补充成完全二叉树，放在这个链表中
+        queue.add(root);
+        BinaryNode<T> empty = null;
+        int nodeCount = 1; // 队列中非空节点数
+        while (queue.size() > 0 && nodeCount > 0) {
+            BinaryNode<T> node = queue.remove();
+            if (node != null) {
+                nodeCount--;
+                tree.add(node);
+                BinaryNode<T> left = node.left;
+                BinaryNode<T> right = node.right;
+                if (left == null) {
+                    queue.add(empty);
+                } else {
+//                    queue.add(linkFlag);
+                    queue.add(left);
+                    nodeCount++;
+                }
+                if (right == null) {
+                    queue.add(empty);
+                } else {
+                    queue.add(right);
+                    nodeCount++;
+                }
+            } else {
+                tree.add(empty);
+                queue.add(empty);
+                queue.add(empty);
+            }
+        }
+        return tree;
+    }
+
     /**
      * 测试
      * @param args
@@ -786,6 +876,8 @@ public class BinarySearchTree<T extends Comparable>  implements Tree<T> {
 //
 //        System.out.println("findNode->"+cbtree.findNode("D",cbtree.root).data);
 //        System.out.println("删除E结点:先根遍历:" + cbtree.preOrder());
+          System.out.println("树的结构如下:");
+          cbtree.print();
 
     }
 }
