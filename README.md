@@ -1,4 +1,4 @@
-#java数据结构与算法系列文章目录(持续更新)
+# java数据结构与算法系列文章目录(持续更新)
 
 [java数据结构与算法之顺序表与链表设计与实现分析](http://blog.csdn.net/javazejian/article/details/52953190)
 
