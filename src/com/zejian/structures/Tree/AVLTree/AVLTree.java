@@ -239,11 +239,11 @@ public class AVLTree<T extends Comparable> implements Tree<T>{
                 AVLNode<T> currentNode=p.right;
                 //判断需要那种旋转
                 if(height(currentNode.left)>height(currentNode.right)){
-                    //LL
-                    p=singleRotateLeft(p);
+                    //RL
+                    p=doubleRotateWithRight(p);
                 }else{
-                    //LR
-                    p=doubleRotateWithLeft(p);
+                    //RR
+                    p=singleRotateRight(p);
                 }
             }
 
@@ -256,11 +256,11 @@ public class AVLTree<T extends Comparable> implements Tree<T>{
                 AVLNode<T> currentNode=p.left;
                 //判断需要那种旋转
                 if(height(currentNode.right)>height(currentNode.left)){
-                    //RR
-                    p=singleRotateRight(p);
+                    //LR
+                    p=doubleRotateWithLeft(p);
                 }else{
-                    //RL
-                    p=doubleRotateWithRight(p);
+                    //LL
+                    p=singleRotateLeft(p);
                 }
             }
         }
@@ -442,7 +442,8 @@ public class AVLTree<T extends Comparable> implements Tree<T>{
 
         avlTree.printTree(avlTree.root);
 
-        avlTree.remove(7);
+        avlTree.remove(11);
+        avlTree.remove(8);
 
         System.out.println("================");
 
