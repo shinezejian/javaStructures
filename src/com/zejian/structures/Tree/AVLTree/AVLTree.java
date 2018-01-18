@@ -441,7 +441,7 @@ public class AVLTree<T extends Comparable> implements Tree<T>{
         }
 
         avlTree.printTree(avlTree.root);
-
+        //删除11,8以触发旋转平衡操作
         avlTree.remove(11);
         avlTree.remove(8);
 
