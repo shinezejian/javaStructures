@@ -25,7 +25,7 @@ public class LazyPrimMST<Weight extends Number & Comparable<Weight>> {
 
         visited = new boolean[graph.V()];
         minHeap = new MinHeap<Edge<Weight>>(graph.E());
-        mst = new ArrayList<>(graph.V());
+        mst = new ArrayList<Edge<Weight>>(graph.V());
 
         //从第一个顶点开始访问
         visit(graph,0);
@@ -80,11 +80,11 @@ public class LazyPrimMST<Weight extends Number & Comparable<Weight>> {
     public static void main(String[] args){
         String filename = "weighttestG3.txt";
 
-        WeightSparseGraph<Double> weightSparseGraph = new WeightSparseGraph<>(8,false);
+        WeightSparseGraph<Double> weightSparseGraph = new WeightSparseGraph<Double>(8,false);
         weightSparseGraph.readGraph(filename);
         weightSparseGraph.show();
 
-        LazyPrimMST<Double> lazy = new LazyPrimMST<>(weightSparseGraph);
+        LazyPrimMST<Double> lazy = new LazyPrimMST<Double>(weightSparseGraph);
         System.out.println("总权值是:"+lazy.mstWeight());
         for (int i = 0; i <lazy.getMstEdgeList().size() ; i++) {
             System.out.println("e:"+lazy.getMstEdgeList().get(i));
