@@ -12,6 +12,8 @@ import java.util.List;
  * 利用深度优先搜索算法遍历图,并标记已被访问过的顶点,同时利用最小堆的特性
  * 每一次切分,都将新的边的权值加入堆中,并获取从其中获取最小权值的元素,必
  * 为最小生成树的一条边的权值
+ *
+ * 时间复杂度 E * LogE（deleteMin方法执行的总时间复杂度） + E * LogE（visit方法执行的总时间复杂度） = E*LogE级别
  */
 public class LazyPrimMST<Weight extends Number & Comparable<Weight>> {
     private boolean visited[]; //标记已被访问过的顶点
