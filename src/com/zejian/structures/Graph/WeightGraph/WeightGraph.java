@@ -76,7 +76,7 @@ public abstract class WeightGraph<Weight extends Number & Comparable<Weight>> {
                 double weight = scanner.nextDouble();
                 assert v >= 0 && v < V;
                 assert w >= 0 && w < V;
-                this.addEdge((Edge<Weight>) new Edge<Double>(v,w,weight));
+                this.addEdge(new Edge(v,w,weight));
             }
         }
         catch (InputMismatchException e) {

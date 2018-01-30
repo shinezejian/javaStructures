@@ -16,7 +16,7 @@ import java.util.List;
 public class LazyPrimMST<Weight extends Number & Comparable<Weight>> {
     private boolean visited[]; //标记已被访问过的顶点
     private MinHeap<Edge<Weight>> minHeap; //存储权值的堆结构
-    private Weight mWeight; //最小生成树的总权值
+    private Number mWeight; //最小生成树的总权值
     private List<Edge<Weight>> mst;  //存放最小生成树的所有顶点
 
 
@@ -43,8 +43,14 @@ public class LazyPrimMST<Weight extends Number & Comparable<Weight>> {
             }else if(!visited[e.w()]){
                 visit(graph,e.w());
             }
-
         }
+
+        //计算最小生成树的权值
+        mWeight = mst.get(0).wt();
+        for (int i = 1; i <mst.size() ; i++) {
+            mWeight = mWeight.doubleValue() + mst.get(i).wt().doubleValue();
+        }
+
     }
     private void visit(WeightGraph graph , int v){
         if(!visited[v]) {
@@ -56,6 +62,32 @@ public class LazyPrimMST<Weight extends Number & Comparable<Weight>> {
                     minHeap.insert(e);
                 }
             }
+        }
+    }
+
+    /**
+     * 最小生成树的总权值
+     * @return
+     */
+    public Number mstWeight(){
+        return mWeight;
+    }
+
+    public List<Edge<Weight>> getMstEdgeList(){
+        return mst;
+    }
+
+    public static void main(String[] args){
+        String filename = "weighttestG3.txt";
+
+        WeightSparseGraph<Double> weightSparseGraph = new WeightSparseGraph<>(8,false);
+        weightSparseGraph.readGraph(filename);
+        weightSparseGraph.show();
+
+        LazyPrimMST<Double> lazy = new LazyPrimMST<>(weightSparseGraph);
+        System.out.println("总权值是:"+lazy.mstWeight());
+        for (int i = 0; i <lazy.getMstEdgeList().size() ; i++) {
+            System.out.println("e:"+lazy.getMstEdgeList().get(i));
         }
     }
 }
