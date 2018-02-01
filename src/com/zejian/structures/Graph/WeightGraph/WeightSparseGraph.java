@@ -41,9 +41,9 @@ public class WeightSparseGraph<Weight extends Number & Comparable<Weight>> exten
         assert e.v() >= 0 && e.v() < V ;
         assert e.w() >= 0 && e.w() < V ;
 
-        g[e.v()].add(e);
+        g[e.v()].add(new Edge<Weight>(e));
         if( e.v() != e.w() && !directed ) {
-            g[e.w()].add(e);
+            g[e.w()].add(new Edge<Weight>(e.w(),e.v(), (Weight) e.wt()));
         }
         E++;
     }
@@ -89,7 +89,7 @@ public class WeightSparseGraph<Weight extends Number & Comparable<Weight>> exten
      * @param args
      */
     public static void main(String[] args){
-        String filename = "weighttestG3.txt";
+        String filename = "testWG1.txt";
 
         WeightSparseGraph<Double> weightSparseGraph = new WeightSparseGraph<>(8,false);
         weightSparseGraph.readGraph(filename);

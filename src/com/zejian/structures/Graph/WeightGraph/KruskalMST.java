@@ -63,7 +63,7 @@ public class KruskalMST<Weight extends Number & Comparable<Weight>> {
         //计算最小生成树的总权值
         mstWeight = mst.get(0).wt().doubleValue();
         for (int i = 1; i < mst.size() ; i++) {
-            mstWeight =mstWeight.doubleValue() + mst.get(0).wt().doubleValue();
+            mstWeight =mstWeight.doubleValue() + mst.get(i).wt().doubleValue();
         }
     }
 

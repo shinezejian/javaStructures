@@ -18,9 +18,9 @@ public class Edge<Weight extends Number & Comparable<Weight>> implements Compara
 
     public Edge(Edge<Weight> e)
     {
-        this.v = e.w;
-        this.w = e.w;
-        this.weight = e.weight;
+        this.v = e.v();
+        this.w = e.w();
+        this.weight = e.wt();
     }
 
     /**
