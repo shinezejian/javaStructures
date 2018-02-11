@@ -4,7 +4,6 @@ import com.zejian.structures.heap.IndexMinPQ;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 
 /**
  * Created by zejian on 2018/1/30.

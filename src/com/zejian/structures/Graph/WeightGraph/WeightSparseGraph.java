@@ -40,7 +40,6 @@ public class WeightSparseGraph<Weight extends Number & Comparable<Weight>> exten
     public void addEdge(Edge e) {
         assert e.v() >= 0 && e.v() < V ;
         assert e.w() >= 0 && e.w() < V ;
-
         g[e.v()].add(new Edge<Weight>(e));
         if( e.v() != e.w() && !directed ) {
             g[e.w()].add(new Edge<Weight>(e.w(),e.v(), (Weight) e.wt()));

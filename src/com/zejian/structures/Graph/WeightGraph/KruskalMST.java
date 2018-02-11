@@ -33,7 +33,7 @@ public class KruskalMST<Weight extends Number & Comparable<Weight>> {
                     //因为是无向图,存在重复边.所以这里需要判断一下如(0,1)和(1,0)是同一条边
                     if (e.v() < e.w()) {
                         count ++;
-                        System.out.println("count:"+count+",e="+e.toString());
+//                        System.out.println("count:"+count+",e="+e.toString());
                         pq.insert(e);
                     }
                 }
@@ -79,7 +79,7 @@ public class KruskalMST<Weight extends Number & Comparable<Weight>> {
 
 
     /**
-     * TODO:测试未通过.............
+     * Test
      * @param args
      */
     public static void main(String[] args) {
