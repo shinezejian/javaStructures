@@ -74,22 +74,34 @@ public class InsertionSort {
     }
 
 
-    public static <T extends Comparable<T>> void sort(T[] array,int l , int r){
-        assert array != null;
+//    public static <T extends Comparable<T>> void sort(T[] array,int l , int r){
+//        assert array != null;
+//
+//        //从第2个元素开始
+//        for (int i = l+1; i <=r ; i++) {
+//            T e = array[i];//先记录要比较的元素,确定其交换的位置后再移动到对应位置
+//            int j;//记录j,最后交换时使用
+//            //更优雅的写法
+//            //(array[j-1].compareTo(e) > 0)这个比较确保了发现前面没有更大元素就停止,这点与选择排序不同.
+//            for (j = i; j > l && array[j-1].compareTo(e) > 0; j--) {
+//                array[j] = array[j-1];
+//            }
+//            array[j] = e;
+//        }
+//    }
 
-        //从第2个元素开始
-        for (int i = l+1; i <=r ; i++) {
-            T e = array[i];//先记录要比较的元素,确定其交换的位置后再移动到对应位置
-            int j;//记录j,最后交换时使用
-            //更优雅的写法
-            //(array[j-1].compareTo(e) > 0)这个比较确保了发现前面没有更大元素就停止,这点与选择排序不同.
-            for (j = i; j > l && array[j-1].compareTo(e) > 0; j--) {
-                array[j] = array[j-1];
-            }
-            array[j] = e;
+
+    // 对arr[l...r]的区间使用InsertionSort排序
+    public static <T extends Comparable<T>> void sort(T[] arr, int l, int r){
+
+        for( int i = l + 1 ; i <= r ; i ++ ){
+            T e = arr[i];
+            int j = i;
+            for( ; j > l && arr[j-1].compareTo(e) > 0 ; j--)
+                arr[j] = arr[j-1];
+            arr[j] = e;
         }
     }
-
 
     private static <T extends Comparable<T>> void swap(T[] arr, int i, int j) {
         T t = arr[i];

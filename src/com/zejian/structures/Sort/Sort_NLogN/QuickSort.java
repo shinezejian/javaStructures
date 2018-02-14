@@ -1,6 +1,7 @@
 package com.zejian.structures.Sort.Sort_NLogN;
 
 import com.zejian.structures.Sort.SortTestHelper;
+import com.zejian.structures.Sort.Sort_N_2.InsertionSort;
 
 import java.util.Arrays;
 
@@ -42,14 +43,14 @@ public class QuickSort {
      */
     public static <T extends Comparable<T>> void quickSort(T[] arr,int l,int r){
         //如果排序的数组元素个数少于16直接使用插入排序即可(优化点)
-//        if(r-l < 16){
-//            InsertionSort.sort(arr,l,r);
-//            return;
-//        }
-
-        if (l >= r){
+        if(r-l < 16){
+            InsertionSort.sort(arr,l,r);
             return;
         }
+
+//        if (l >= r){
+//            return;
+//        }
 
         //获取分区的基准点的数组下标p
         int p = partition(arr,l,r);
@@ -90,7 +91,7 @@ public class QuickSort {
     }
 
 
-    private static <T extends Comparable<T>> void swap(T[] arr, int i, int j) {
+    public static <T extends Comparable<T>> void swap(T[] arr, int i, int j) {
         T t = arr[i];
         arr[i] = arr[j];
         arr[j] = t;
@@ -106,7 +107,7 @@ public class QuickSort {
         System.out.println();
 
         //对于近乎有序的数组,优化后的归并排序效率更高
-        int N = 200000;
+        int N = 2000;
         Integer[] arr1 = SortTestHelper.generateNearlyOrderedArray(N, 4);
         Integer[] arr2 = Arrays.copyOf(arr1, arr1.length);
         Integer[] arr3 = Arrays.copyOf(arr1, arr1.length);
