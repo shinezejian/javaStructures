@@ -43,9 +43,9 @@ public class QuickSort2Ways {
             InsertionSort.sort(arr,l,r);
             return;
         }
-        if( l >= r){
-            return;
-        }
+//        if( l >= r){
+//            return;
+//        }
 
         //计算并获取基准点的下标
         int p = partition(arr,l,r);
