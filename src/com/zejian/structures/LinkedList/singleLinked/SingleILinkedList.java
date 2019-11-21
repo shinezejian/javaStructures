@@ -218,36 +218,31 @@ public class SingleILinkedList<T> implements ILinkedList<T> {
     @Override
     public boolean removeAll(T data) {
 
-        boolean isRemove=false;
+       boolean isRemove = false;
 
-        if(this.head!=null&&data!=null){
-
-            //如果移除的是头结点
-            if(data.equals(this.head.data)){
-                this.head=this.head.next;
-                isRemove=true;
-            }else {
-
-                Node<T> front=this.head;
-                Node<T> pre=front.next;
-                //查找所有数据相同的结点并删除
-                while (pre!=null){
-
-                    if(data.equals(pre.data)){
-                        //更改指针指向
-                        front.next=pre.next;
-                        pre =front.next;
-                        isRemove=true;
-                    }else {
-                        front=pre;
-                        pre=pre.next;
-                    }
-                }
-            }
-        }else {//data=null || this.head=null
-            isRemove=false;
+    if(this.head != null && data != null){
+        //如果移除的是头节点
+        if(data.equals(this.head.data)){
+            this.head = this.head.next;
+            isRemove = true;
         }
-        return isRemove;
+        
+        Node<T> front = this.head;
+        Node<T> pre = front.next;
+        //查找所有数据相同的节点并删除
+        while(pre != null){
+            if(data.equals(pre.data)){
+                front.next = pre.next;
+                pre = front.next;
+                isRemove = true;
+            }else {
+                front = pre;
+                pre = pre.next;
+            }
+        }
+
+    }
+    return isRemove;
     }
 
     /**
